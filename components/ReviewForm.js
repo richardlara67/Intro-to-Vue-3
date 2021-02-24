@@ -1,7 +1,7 @@
-app.component('review-form', {
-  template:
-  /*html*/
-  `<form class="review-form" @submit.prevent="onSubmit">
+app.component("review-form", {
+    template:
+    /*html*/
+        `<form class="review-form" @submit.prevent="onSubmit">
     <h3>Leave a review</h3>
     <label for="name">Name:</label>
     <input id="name" v-model="name">
@@ -29,37 +29,40 @@ app.component('review-form', {
     <input class="button" type="submit" value="Submit">  
 
   </form>`,
-  data() {
-    return {
-      name: '',
-      review: '',
-      rating: null,
-      // solution
-      recommend: null
-      // solution
-    }
-  },
-  methods: {
-    onSubmit() {
-      if (this.name === '' || this.review === '' || this.rating === null || this.recommend === null) {
-        alert('Review is incomplete. Please fill out every field.')
-        return
-      }
+    data() {
+        return {
+            name: "",
+            review: "",
+            rating: null,
+            // solution
+            recommend: null,
+            // solution
+        };
+    },
+    methods: {
+        onSubmit() {
+            if (
+                this.name === "" ||
+                this.review === "" ||
+                this.rating === null ||
+                this.recommend === null
+            ) {
+                alert("Review is incomplete. Please fill out every field.");
+                return;
+            }
 
-      let productReview = {
-        name: this.name,
-        review: this.review,
-        rating: this.rating,
-        recommend: this.recommend // solution
+            let productReview = {
+                name: this.name,
+                review: this.review,
+                rating: this.rating,
+                recommend: this.recommend, // solution
+            };
+            this.$emit("review-submitted", productReview);
 
-      }
-      this.$emit('review-submitted', productReview)
-
-      this.name = ''
-      this.review = ''
-      this.rating = null
-      this.recommend = null // solution
-
-    }
-  }
-})
+            this.name = "";
+            this.review = "";
+            this.rating = null;
+            this.recommend = null; // solution
+        },
+    },
+});
